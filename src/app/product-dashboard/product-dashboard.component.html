@@ -1,0 +1,15 @@
+<body>
+  @if (filteredItems.length === 0) {
+  <div class="recipe-list-container">
+    @for (item of allitems; track $index) {
+    <app-product-list [item]="item" [id]="item.id" />
+    }
+  </div>
+  } @else {
+  <div class="recipe-list-container">
+    @for (item of filteredItems; track $index) {
+    <app-product-list [item]="item" [id]="item.id"></app-product-list>
+    }
+  </div>
+  }
+</body>
