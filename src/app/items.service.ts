@@ -45,4 +45,10 @@ export class ItemsService {
       (item) => item.id !== itemToRemove.id
     );
   }
+  updateCartItemQuantity(id: string, quantity: string) {
+    const item = this.productItems.find((productItem) => productItem.id === id);
+    if (item) {
+      item.quantity = quantity;
+    }
+  }
 }

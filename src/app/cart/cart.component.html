@@ -12,13 +12,27 @@
       <h3>{{ item.name }}</h3>
       <p>{{ item.amount | currency : "INR" }}</p>
       <p>{{ item.description }}</p>
-      <p>Quantity: {{ item.quantity }}</p>
+      <!-- <p>Quantity: {{ item.quantity }}</p> -->
+
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <mat-select
+          [(value)]="item.quantity"
+          (selectionChange)="updateQuantity(item)"
+        >
+          @for (item of quantityOptions; track item) {
+          <mat-option [value]="item.value">{{ item.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
       <button mat-raised-button color="warn" (click)="removeItem(item)">
         Delete
       </button>
+      <p>Subtotal: {{ getSubtotal(item) | currency : "INR" }}</p>
     </div>
     }
   </div>
-  <h3 class="cart-total">Total: {{ total() | currency : "INR" }}</h3>
+  <h3 class="cart-total">Total: {{ grandTotal() | currency : "INR" }}</h3>
   <button mat-flat-button (click)="goBack()">Back</button>
 </div>
