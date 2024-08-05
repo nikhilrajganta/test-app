@@ -21,9 +21,8 @@ export class ProductOverviewComponent {
     private router: Router
   ) {}
 
-  // After Initialization of the component
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id') as string; // From URL
+    let id = this.route.snapshot.paramMap.get('id') as string;
 
     this.productsService
       .getProductByIdP(id)
