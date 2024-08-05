@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CurrencyPipe } from '@angular/common';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product-list',
@@ -19,6 +20,7 @@ import { CurrencyPipe } from '@angular/common';
     MatBadgeModule,
     RouterLink,
     CurrencyPipe,
+    CartComponent,
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
@@ -32,6 +34,11 @@ export class ProductListComponent {
 
   openProductOverview() {
     this.router.navigate(['/overview', this.item.id]);
+  }
+
+  addToCart(item: IProducts) {
+    this.itemserviceInfo.addToCart(item);
+    this.router.navigate(['/cart']);
   }
 
   @Input() item = {

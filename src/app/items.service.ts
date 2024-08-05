@@ -14,6 +14,7 @@ export interface IProducts {
 })
 export class ItemsService {
   constructor() {}
+  private productItems: IProducts[] = [];
 
   getProducts(): Promise<IProducts[]> {
     return fetch('https://66b0ac9e6a693a95b539b890.mockapi.io/data').then(
@@ -25,5 +26,18 @@ export class ItemsService {
     return fetch(`https://66b0ac9e6a693a95b539b890.mockapi.io/data/${id}`).then(
       (res) => res.json()
     );
+  }
+  addToCart(item: IProducts) {
+    const existingItem = this.productItems.find(
+      (productItem) => productItem.id === item.id
+    );
+    if (existingItem) {
+      existingItem.quantity = (parseInt(existingItem.quantity) + 1).toString();
+    } else {
+      this.productItems.push({ ...item, quantity: '1' });
+    }
+  }
+  getCartItems(): IProducts[] {
+    return this.productItems;
   }
 }

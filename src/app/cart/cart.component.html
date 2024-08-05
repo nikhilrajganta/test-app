@@ -1,0 +1,19 @@
+<!-- cart.component.html -->
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  @for (item of cartItems; track $index) {
+  <img
+    [src]="item.image"
+    style="height: 200px; width: 150px"
+    alt="{{ item.name }}"
+  />
+  <div class="item-details">
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.amount | currency : "INR" }}</p>
+    <p>{{ item.description }}</p>
+    <p>Quantity: {{ item.quantity }}</p>
+  </div>
+  }
+</div>
+<h3 class="cart-total">Total: {{ total() | currency : "INR" }}</h3>
+<button mat-flat-button (click)="goBack()">Back</button>
