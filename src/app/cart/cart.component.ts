@@ -26,6 +26,10 @@ export class CartComponent {
       0
     );
   }
+  removeItem(item: IProducts) {
+    this.productService.removeFromCart(item);
+    this.cartItems = this.productService.getCartItems();
+  }
   goBack() {
     this.router.navigate(['/']);
   }

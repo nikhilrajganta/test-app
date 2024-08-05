@@ -40,4 +40,9 @@ export class ItemsService {
   getCartItems(): IProducts[] {
     return this.productItems;
   }
+  removeFromCart(itemToRemove: IProducts) {
+    this.productItems = this.productItems.filter(
+      (item) => item.id !== itemToRemove.id
+    );
+  }
 }
